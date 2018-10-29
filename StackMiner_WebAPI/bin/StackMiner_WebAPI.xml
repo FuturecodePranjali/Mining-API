@@ -1,0 +1,1504 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StackMiner_WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:StackMiner_WebAPI.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:StackMiner_WebAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:StackMiner_WebAPI.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:StackMiner_WebAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:StackMiner_WebAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:StackMiner_WebAPI.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,StackMiner_WebAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,StackMiner_WebAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:StackMiner_WebAPI.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},StackMiner_WebAPI.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(StackMiner_WebAPI.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,StackMiner_WebAPI.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:StackMiner_WebAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackMiner_WebAPI.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:StackMiner_WebAPI.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:StackMiner_WebAPI.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackMiner_WebAPI.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="M:StackMiner_WebAPI.Controllers.LoginController.GetLoginUsers(StackMiner_WebAPI.Models.LoginModel)">
+            <summary>
+            Get authentication login users.
+            </summary>
+            /// <remarks>
+            ### REMARKS ###
+             The following codes are returned
+            - "true" - If Login Success 
+            - "false" - If Login Falied
+             </remarks>
+            <param name="loginModel">Check Login Users</param>
+            <returns>Get authentication login users</returns>
+        </member>
+        <member name="M:StackMiner_WebAPI.Controllers.RegisterMailVerifyController.RegisterMailConfirmation(System.String)">
+            <summary>
+             Mail Verification of Member Registration
+            </summary>
+            <remarks>
+            	/// ### REMARKS ###
+            The following codes are returned
+            - "true" - Registration verified Successfully
+            - "error: invalid_otp_code" - If Entered invalid OTP code
+            - "error: something_went_wrong - If mailer link not found
+            - "error: user_verification_id_not_found" - If user verfication code not found
+            - "error:email_already_exist_or_sponserid_invalid" - If Email already exist
+            - "error: please_contact_admin_or_create_support_ticket_for_activate_account" - If Failed Registration
+            </remarks>
+            <param name="otpcode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StackMiner_WebAPI.Controllers.RegistrationController.NewRegistrationUsers(StackMiner_WebAPI.Models.RegistrationModel)">
+            <summary>
+            New Member registration.
+            </summary>
+            <remarks>
+            ### REMARKS ###
+            The following codes are returned
+            - "true" - Registration Successful
+            - "false" - Registration Failed
+            - "error: email_already_exist" - If user already exist with email
+            - "error: numeric_name_not_allowed" - Name numeric not allowed
+            - "error: name_cant_be_null_or_numeric" - Name cant be null or numeric 
+            - "error: sponser_id_invalid " - If provided SponserID is Invalid
+            - "error: please_fill_mandatory_filled" - Please fill the mandatory filed these are the name, email, password and Mobile No
+            
+            </remarks>
+            <param name="registrationmodel"></param>
+            <returns> </returns>
+        </member>
+        <member name="T:ConnectionCls">
+            <summary>
+            Summary description for ConnectionCls
+            </summary>
+        </member>
+        <member name="M:ConnectionCls.BoundDropdownWithValue(System.String,System.Web.UI.WebControls.DropDownList)">
+            <summary>
+            bounds dropdownlists
+            </summary>
+            <param name="sqlSelect">SQL Select Statement, first column shuld be Text Field and second one value</param>
+            <param name="Drop1">DropDownList1</param> 
+        </member>
+        <member name="M:ConnectionCls.GetdataReader(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="strSqlSelectCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.GetSqlDataReader_second(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="strSqlSelectCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.ExecuteSqlnonQuery(System.String)">
+            <summary>
+            Used to execute non query
+            </summary>
+            <param name="strSqldmlCommand">Sql manupulation command</param>
+            <returns>int</returns>
+        </member>
+        <member name="M:ConnectionCls.getdataSet(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sqlSelectCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.getScalerValue(System.String)">
+            <summary>
+            Used to get Aggrigate Value
+            </summary>
+            <param name="strSqldmlCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.getdataSet(System.String,System.String)">
+            <summary>
+            jbjk
+            </summary>
+            <param name="sqlSelectCommand"></param>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.inserrtnewcustrecords(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.DateTime,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String@,System.String@)">
+            <summary>
+            New User Registration
+            </summary>
+            <param name="Cust_SponserID">Invitation ID</param>
+            <param name="Email">E-mailID</param>
+            <param name="Cust_Address">Address</param>
+            <param name="Cust_Answer">Security Answer</param>
+            <param name="Cust_Question">Security Question</param>
+            <param name="Cust_City">City</param>
+            <param name="Cust_State">State</param>
+            <param name="Cust_Country">Country</param>
+            <param name="Cust_Password">Password</param>
+            <param name="Cust_Title">Title</param>
+            <param name="Cust_Name">Name</param>
+            <param name="Cust_Gender">Gender</param>
+            <param name="Cust_FatherName">Mother name</param>
+            <param name="Cust_DOB">Date of Birth</param>
+            <param name="Cust_Pincode">Zip Code</param>
+            <param name="Cust_mobileNo">Mobile Np</param>
+            <param name="Cust_nominee">Nominee Name</param>
+            <param name="Cust_Relation">Relation</param>
+            <param name="Cust_Package">Joing package</param>
+            <param name="Cust_Location">Position</param>
+            <param name="Cust_TempPinID">Used pinno</param>
+            <param name="PayMode">payment mode</param>
+            <param name="NewID">Returns Newly generated ID</param>
+            <param name="ErrCode">Error Message</param>
+            <returns>INT</returns>
+        </member>
+        <member name="M:ConnectionCls.loanAccount(System.String,System.Int32@,System.String@)">
+             <summary>
+             Topup Account
+             </summary>
+             <param name="cusid">Topup ID</param>
+             <param name="pcode">Product COde</param>
+             <param name="multiple">Multiple of Product Amount</param>
+             <param name="EwalletID">E-Wallet ID</param>
+             <param name="flag">out type INT</param>
+             <param name="errMsg">out Type STRING</param>
+             <returns></returns>
+            
+        </member>
+        <member name="M:ConnectionCls.FireSMS(System.String)">
+            <summary>
+            Send SMS
+            </summary>
+            <param name="baseurl"></param>
+        </member>
+        <member name="M:ConnectionCls.fundtransfer_clubtomain(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">Session User ID</param>
+            <param name="CusID2">ID to Transfer</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>TransactionID</returns>
+        </member>
+        <member name="M:ConnectionCls.fundtransfer_binarytomain(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">Session User ID</param>
+            <param name="CusID2">ID to Transfer</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>TransactionID</returns>
+        </member>
+        <member name="M:ConnectionCls.change_password(System.String,System.String,System.String,System.String,System.String@,System.Int32@)">
+            <summary>
+            change in password
+            </summary>
+            <param name="CusID1">Session User ID</param>
+            <param name="CusID2">ID to Transfer</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>TransactionID</returns>
+        </member>
+        <member name="M:ConnectionCls.InternalFundTransfer(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">Session User ID</param>
+            <param name="CusID2">ID to Transfer</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>TransactionID</returns>
+        </member>
+        <member name="M:ConnectionCls.InternalFundTransfer(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">Session User ID</param>
+            <param name="CusID2">ID to Transfer</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>TransactionID</returns>
+        </member>
+        <member name="M:ConnectionCls.Proctransferfundmainwallettopinwallet(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">Session User ID</param>
+            <param name="CusID2">ID to Transfer</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>TransactionID</returns>
+        </member>
+        <member name="M:ConnectionCls.TransferEpin(System.Int32,System.String,System.Single,System.String,System.String,System.Int32@)">
+            <summary>
+            Transfer E-Pin User To User
+            </summary>
+            <param name="qty"></param>
+            <param name="pcode"></param>
+            <param name="idfrom"></param>
+            <param name="idto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.updateUserPersonalDetails(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cusid"></param>
+            <param name="Cust_City"></param>
+            <param name="Cust_PhoneNo"></param>
+            <param name="Cust_Address"></param>
+            <param name="Cust_State"></param>
+            <param name="Cust_Pincode"></param>
+            <param name="email"></param>
+            <param name="Cust_DOB"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.updateUsersNominee(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Update User nominee Datails
+            </summary>
+            <param name="cusid"></param>
+            <param name="name"></param>
+            <param name="Relationship"></param>
+            <param name="City"></param>
+            <param name="State"></param>
+            <param name="Mobile"></param>
+            <param name="Address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.updateUsersBankDetails(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Update Users Bank Details
+            </summary>
+            <param name="cusid"></param>
+            <param name="Cust_PanID"></param>
+            <param name="bankachodename"></param>
+            <param name="Cust_BankBranch"></param>
+            <param name="BankState"></param>
+            <param name="Cust_BankName"></param>
+            <param name="Cust_BankAcc"></param>
+            <param name="BankCity"></param>
+            <param name="Cust_BankIFSC"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.RequestForPtbWidrawl(System.String,System.String,System.String,System.String,System.String,System.String@,System.String@)">
+            <summary>
+            PTB Point Widrawl requests
+            </summary>
+            <param name="cusid"></param>
+            <param name="RqAmount"></param>
+            <param name="rqno"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.InternalTransferPointsPTBtoRTB(System.String,System.Int32,System.String)">
+             <summary>
+            TransferPointsPTBtoRTB 
+             </summary>
+             <param name="CusID"></param>
+             <param name="amount"></param>
+             <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.Proctransfermainwallettorechargewallet(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">Session User ID</param>
+            <param name="CusID2">ID to Transfer</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>TransactionID</returns>
+        </member>
+        <member name="M:ConnectionCls.transferotherwallettomainwallet(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">Session User ID</param>
+            <param name="CusID2">ID to Transfer</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>TransactionID</returns>
+        </member>
+        <member name="M:ConnectionCls.transfer_club_walletto_mainwallet(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">Session User ID</param>
+            <param name="CusID2">ID to Transfer</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>TransactionID</returns>
+        </member>
+        <member name="M:ConnectionCls.InternalFundTransfer_bidwallet(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">Session User ID</param>
+            <param name="CusID2">ID to Transfer</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>TransactionID</returns>
+        </member>
+        <member name="M:ConnectionCls.TopupPingeneration_advt_Ewallet(System.String,System.String,System.String,System.String,System.String,System.String,System.Int32@)">
+            <summary>
+            Topup Pin generation
+            </summary>
+            <param name="qty"></param>
+            <param name="CusID"></param>
+            <param name="flag"></param>
+            <returns></returns>
+            m_qty, advtno, amtval, customerid, DropDownList1.Text, franid
+        </member>
+        <member name="M:ConnectionCls.TopupPingeneration_Ewallet(System.String,System.String,System.String,System.String,System.Int32@)">
+            <summary>
+            Topup Pin generation
+            </summary>
+            <param name="qty"></param>
+            <param name="CusID"></param>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.RegistrationPingeneration_Ewallet(System.String,System.String,System.String,System.Int32@)">
+            <summary>
+            Registration Pin generation
+            </summary>
+            <param name="qty">qUANTITY</param>
+            <param name="CusID"></param>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.PromotionPingeneration_Ewallet(System.String,System.String,System.String,System.Int32@)">
+            <summary>
+            Promotion Pin generation
+            </summary>
+            <param name="qty"></param>
+            <param name="CusID"></param>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.inserrtnewjoining(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.DateTime,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.String,System.String@,System.String@)">
+            <summary>
+            jhghj
+            </summary>
+            <param name="Cust_SponserID"></param>
+            <param name="Email"></param>
+            <param name="Cust_Address"></param>
+            <param name="Cust_Answer"></param>
+            <param name="Cust_Question"></param>
+            <param name="Cust_City"></param>
+            <param name="Cust_Country"></param>
+            <param name="Cust_Password"></param>
+            <param name="Cust_Title"></param>
+            <param name="Cust_Name"></param>
+            <param name="Cust_Lastname"></param>
+            <param name="Cust_Gender"></param>
+            <param name="Cust_FatherName"></param>
+            <param name="Cust_DOB"></param>
+            <param name="Cust_Pincode"></param>
+            <param name="Cust_PhoneNo"></param>
+            <param name="Cust_mobileNo"></param>
+            <param name="Cust_nominee"></param>
+            <param name="Cust_Relation"></param>
+            <param name="Cust_PanID"></param>
+            <param name="Cust_Package"></param>
+            <param name="Cust_Location"></param>
+            <param name="Cust_TempPinID"></param>
+            <param name="Cust_BankName"></param>
+            <param name="Cust_BankAdd"></param>
+            <param name="Cust_BankBranch"></param>
+            <param name="Cust_BankAcc"></param>
+            <param name="plannerId"></param>
+            <param name="Product_category"></param>
+            <param name="NewID"></param>
+            <param name="ErrCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.Encrypt(System.String)">
+            <summary>
+            ///////////////////Encrypt////////////////////////////////
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:ConnectionCls.Decrypt(System.String)">
+            <summary>
+            ///////////////////////Decrypt////////////////////////////
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConnectionCls.GetVisitorIPAddress(System.Boolean)">
+            <summary>
+            method to get Client ip address
+            </summary>
+            <param name="GetLan"> set to true if want to get local(LAN) Connected ip address</param>
+            <returns></returns>
+        </member>
+        <member name="T:ClsDataAccess">
+            <summary>
+            Summary description for dal
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.#ctor(System.String)">
+            <summary>
+            Public Constructor , takes one argument as sqlconnection string
+            </summary>
+            <param name="SQLconnectionString">SQLconnectionString</param>
+        </member>
+        <member name="M:ClsDataAccess.GetDataSet(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="SqlSelectCommamnd">SQL SELECT COMMAND</param>
+            <returns>DataSet</returns>
+        </member>
+        <member name="M:ClsDataAccess.GetDataSet(System.String,System.String)">
+            <summary>
+            Get datatable
+            </summary>
+            <param name="SqlSelectCommamnd">Sql Select Command</param>
+            <param name="dataSettableName">DataTable name</param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.GetSqlDataReader(System.String)">
+            <summary>
+            Takes One parameters as valid sql select command and returns SqlDataReader, in closed connection behavior mode
+            </summary>
+            <param name="SqlSelectCommand"></param>
+            <returns>SqlDataReader, If Any error occured then it will returns NULL</returns>
+            <exception cref="!:">Returns Null</exception>
+        </member>
+        <member name="M:ClsDataAccess.GetSqlDataReader_second(System.String)">
+            <summary>
+            Takes One parameters as valid sql select command and returns SqlDataReader, in closed connection behavior mode
+            </summary>
+            <param name="SqlSelectCommand"></param>
+            <returns>SqlDataReader, If Any error occured then it will returns NULL</returns>
+            <exception cref="!:">Returns Null</exception>
+        </member>
+        <member name="M:ClsDataAccess.ExecuteDML(System.String)">
+            <summary>
+            Executes Non-Query Statements,Exeception :returns Exception Code, Returns int
+            </summary>
+            <param name="SqlDMLcmd">String Sql DML Command</param>
+            <returns>1 if Code Query is Executed Successfully Other wise returns Sql ErrorCode</returns>
+        </member>
+        <member name="M:ClsDataAccess.ExecuteScalerQuery(System.String)">
+            <summary>
+            Takes one Parameter as sql select command and retruns only one column and one row
+            </summary>
+            <param name="strSqlSelectCommand">Valid SqlSelect Command , Only For Aggrigate Functions</param>
+            <returns>Aggrigate Value(String)</returns>
+            <exception cref="!:">Returns Error Message</exception>
+        </member>
+        <member name="M:ClsDataAccess.InsertCustRecords(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.DateTime,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String@,System.String@)">
+            <summary>
+            New User Registration
+            </summary>
+            <param name="Cust_SponserID">Invitation ID</param>
+            <param name="Email">E-mailID</param>
+            <param name="Cust_Address">Address</param>
+            <param name="Cust_Answer">Security Answer</param>
+            <param name="Cust_Question">Security Question</param>
+            <param name="Cust_City">City</param>
+            <param name="Cust_State">State</param>
+            <param name="Cust_Country">Country</param>
+            <param name="Cust_Password">Password</param>
+            <param name="Cust_Title">Title</param>
+            <param name="Cust_Name">Name</param>
+            <param name="Cust_Gender">Gender</param>
+            <param name="Cust_FatherName">Mother name</param>
+            <param name="Cust_DOB">Date of Birth</param>
+            <param name="Cust_Pincode">Zip Code</param>
+            <param name="Cust_mobileNo">Mobile Np</param>
+            <param name="Cust_nominee">Nominee Name</param>
+            <param name="Cust_Relation">Relation</param>
+            <param name="Cust_Package">Joing package</param>
+            <param name="Cust_Location">Position</param>
+            <param name="Cust_TempPinID">Used pinno</param>
+            <param name="PayMode">payment mode</param>
+            <param name="NewID">Returns Newly generated ID</param>
+            <param name="ErrCode">Error Message</param>
+            <returns>INT</returns>
+        </member>
+        <member name="M:ClsDataAccess.InsertCustjoining(System.String,System.String,System.DateTime,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.DateTime,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.String,System.String@,System.String@)">
+            <summary>
+            Takes 31 Parameter And Executes New Join  Process 
+            </summary>
+            <param name="Cust_SponserID">Introducer Or SponserID</param>
+            <param name="Email">Customer E-Mail Address</param>
+            <param name="Entry_Date">Current DateTime</param>
+            <param name="Cust_Address">Customer Address</param>
+            <param name="Cust_Answer">Security Answer</param>
+            <param name="Cust_Question">Security Question</param>
+            <param name="Cust_City">Customers City</param>
+            <param name="Cust_Country">Customer State</param>
+            <param name="Cust_Password">Login Password</param>
+            <param name="Cust_Title">Name Title</param>
+            <param name="Cust_Name">Customer First Name</param>
+            <param name="Cust_Lastname">Customer Last Name</param>
+            <param name="Cust_Gender">Martial Status Or Company Type</param>
+            <param name="Cust_FatherName">Customer Father Name</param>
+            <param name="Cust_DOB">Customer Date of Birth</param>
+            <param name="Cust_Pincode">Customer Pincode</param>
+            <param name="Cust_PhoneNo">Customer Phone No</param>
+            <param name="Cust_mobileNo">Customer Mobile No</param>
+            <param name="Cust_nominee">Customer Nominee Name</param>
+            <param name="Cust_Relation">Customers Relation With nominee</param>
+            <param name="Cust_PanID">Customer PanID</param>
+            <param name="Cust_Package">Customer Joining package</param>
+            <param name="Cust_Location">Joining Position according to sponserID</param>
+            <param name="Cust_TempPinID">Joining PINNO</param>
+            <param name="Cust_BankName">Customers bank Name where his/her account exists</param>
+            <param name="Cust_BankAdd">Customers bank IFSC Code</param>
+            <param name="Cust_BankBranch">Customers bank Branch</param>
+            <param name="Cust_BankAcc">Customers Bank Account no</param>
+            <param name="plannerId">Paymentmode must be zero(0) if Mode is ECS else 1 </param>
+            <param name="Product_category">Joining package Category eg. BASIC,STANDARD etc</param>
+            <param name="NewID">Output type parameter, Which returns Newly Generated Customer ID</param>
+            <param name="ErrCode">Success if Execution was sucessful else returns Error Messages</param>
+            <returns>Status Code:1 if Successful else 0</returns>
+            <exception cref="!:">Returns Exception message with Out Parameter</exception>
+        </member>
+        <member name="M:ClsDataAccess.InsertalertCustRecords(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.DateTime,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.String,System.String,System.String,System.String,System.String@,System.String@)">
+            <summary>
+            New User Registration
+            </summary>
+            <param name="Cust_SponserID">Invitation ID</param>
+            <param name="Email">E-mailID</param>
+            <param name="Cust_Address">Address</param>
+            <param name="Cust_Answer">Security Answer</param>
+            <param name="Cust_Question">Security Question</param>
+            <param name="Cust_City">City</param>
+            <param name="Cust_State">State</param>
+            <param name="Cust_Country">Country</param>
+            <param name="Cust_Password">Password</param>
+            <param name="Cust_Title">Title</param>
+            <param name="Cust_Name">Name</param>
+            <param name="Cust_Gender">Gender</param>
+            <param name="Cust_FatherName">Mother name</param>
+            <param name="Cust_DOB">Date of Birth</param>
+            <param name="Cust_Pincode">Zip Code</param>
+            <param name="Cust_mobileNo">Mobile Np</param>
+            <param name="Cust_nominee">Nominee Name</param>
+            <param name="Cust_Relation">Relation</param>
+            <param name="Cust_Package">Joing package</param>
+            <param name="Cust_Location">Position</param>
+            <param name="Cust_TempPinID">Used pinno</param>
+            <param name="PayMode">payment mode</param>
+            <param name="NewID">Returns Newly generated ID</param>
+            <param name="ErrCode">Error Message</param>
+            <returns>INT</returns>
+        </member>
+        <member name="M:ClsDataAccess.buyshare(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.loanAccount(System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.Payemnt_addfund_gateway(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.Payemnt_callback_gateway(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.topupaccount_advt(System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.topupAccount_choreservices(System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.topupAccount_advt_sahaj(System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.topupaccount(System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.change_password(System.String,System.String,System.String,System.String,System.String@,System.Int32@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.topupaccount1(System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="F:ClsDataAccess.ConnectionString1">
+            <summary>
+            Connecting String Property,That can Be set and get
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.fundtransfer_clubtomain(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">ID From</param>
+            <param name="CusID2">ID to</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>Transaction ID</returns>
+        </member>
+        <member name="M:ClsDataAccess.fundtransfer_binarytomain(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">ID From</param>
+            <param name="CusID2">ID to</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>Transaction ID</returns>
+        </member>
+        <member name="M:ClsDataAccess.InternalFundTransfer(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">ID From</param>
+            <param name="CusID2">ID to</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>Transaction ID</returns>
+        </member>
+        <member name="M:ClsDataAccess.InternalFundTransfer(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">ID From</param>
+            <returns>Transaction ID</returns>
+        </member>
+        <member name="M:ClsDataAccess.Proctransferfundmainwallettopinwallet(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">ID From</param>
+            <returns>Transaction ID</returns>
+        </member>
+        <member name="M:ClsDataAccess.updateUserPersonalDetails(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            update Users Personal Details
+            </summary>
+            <param name="cusid"></param>
+            <param name="Cust_City"></param>
+            <param name="Cust_PhoneNo"></param>
+            <param name="Cust_Address"></param>
+            <param name="Cust_State"></param>
+            <param name="Cust_Pincode"></param>
+            <param name="email"></param>
+            <param name="Cust_DOB"></param>
+            <param name="Cust_Country"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.updateUsersNominee(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Update Nominee Details
+            </summary>
+            <param name="cusid"></param>
+            <param name="name"></param>
+            <param name="Relationship"></param>
+            <param name="City"></param>
+            <param name="State"></param>
+            <param name="Mobile"></param>
+            <param name="Address"></param>
+            <param name="Cust_DOB"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.update_mob_appdetail(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Update Users Bank Details
+            </summary>
+            <param name="cusid"></param>
+            <param name="Cust_PanID"></param>
+            <param name="bankachodename"></param>
+            <param name="Cust_BankBranch"></param>
+            <param name="BankState"></param>
+            <param name="Cust_BankName"></param>
+            <param name="Cust_BankAcc"></param>
+            <param name="BankCity"></param>
+            <param name="Cust_BankIFSC"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.updateUsersBankDetails(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Update Users Bank Details
+            </summary>
+            <param name="cusid"></param>
+            <param name="Cust_PanID"></param>
+            <param name="bankachodename"></param>
+            <param name="Cust_BankBranch"></param>
+            <param name="BankState"></param>
+            <param name="Cust_BankName"></param>
+            <param name="Cust_BankAcc"></param>
+            <param name="BankCity"></param>
+            <param name="Cust_BankIFSC"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.RequestForPtbWidrawl(System.String,System.String,System.String,System.String,System.String,System.String@,System.String@)">
+            <summary>
+            PTB Point Widrawl Request
+            </summary>
+            <param name="cusid">Request ID</param>
+            <param name="RqAmount">Request Points</param>
+            <param name="rqno">Request No</param>
+            <returns>Request No</returns>
+        </member>
+        <member name="M:ClsDataAccess.RequestForPtbWidrawl_1(System.String,System.Single,System.Single,System.String@,System.String@)">
+            <summary>
+            PTB Point Widrawl Request
+            </summary>
+            <param name="cusid">Request ID</param>
+            <param name="RqAmount">Request Points</param>
+            <param name="rqno">Request No</param>
+            <returns>Request No</returns>
+        </member>
+        <member name="M:ClsDataAccess.makecommit(System.String,System.String,System.Int32,System.String,System.DateTime,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.Proctransfermainwallettorechargewallet(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">ID From</param>
+            <returns>Transaction ID</returns>
+        </member>
+        <member name="M:ClsDataAccess.transferotherwallettomainwallet(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">ID From</param>
+            <returns>Transaction ID</returns>
+        </member>
+        <member name="M:ClsDataAccess.transfer_club_walletto_mainwallet(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">ID From</param>
+            <returns>Transaction ID</returns>
+        </member>
+        <member name="M:ClsDataAccess.updatemessagedetail(System.String,System.String,System.String,System.String)">
+            <summary>
+            Update Users Bank Details
+            </summary>
+            <param name="cusid"></param>
+            <param name="Cust_PanID"></param>
+            <param name="bankachodename"></param>
+            <param name="Cust_BankBranch"></param>
+            <param name="BankState"></param>
+            <param name="Cust_BankName"></param>
+            <param name="Cust_BankAcc"></param>
+            <param name="BankCity"></param>
+            <param name="Cust_BankIFSC"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.update_multi_emailverify(System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.verification_byregistration(System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.InternalFundTransfer_bidwallet(System.String,System.String)">
+            <summary>
+            Internal Fund Transfer
+            </summary>
+            <param name="CusID1">ID From</param>
+            <returns>Transaction ID</returns>
+        </member>
+        <member name="M:ClsDataAccess.InternalTransferPointsPTBtoRTB(System.String,System.Int32,System.String)">
+            <summary>
+            Internal Transfer Points PTB to RTB
+            </summary>
+            <param name="CusID1">ID From</param>
+            <param name="amount">Transfer Amount</param>
+            <returns>Transaction ID</returns>
+        </member>
+        <member name="M:ClsDataAccess.datatransfer_oldtonew(System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.Update_BIXC_Entry(System.String,System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.Update_BIXC_Entry_New_Success_Pending(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.ETHCoin_Purchase(System.String,System.String,System.String,System.String,System.String,System.String,System.Single,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.ETCCoin_Purchase(System.String,System.String,System.String,System.String,System.String,System.String,System.Single,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.AddFund_GLTC_Address_Delete_Previous(System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.Generate_BIXC_Address(System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.AddFund_GLTC_Address_AutoState_Update(System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.Update_GLTC_Address_Status_New(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.AddFund_GLTC_Address_Update_Previous(System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.AddFund_GLTC_Address(System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.Update_GLTC_Address_Status_PackageUpgrade(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.spUpdate_BIXC_Entry_New_Success_Pending_Coin_New_BTC(System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.Update_BIXC_Entry_New_Success_Pending_Coin_BTC(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+        <member name="M:ClsDataAccess.ORDERID(System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.ORDERIDIVESTMENT(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            Topup User Account
+            </summary>
+            <param name="cusid"></param>
+            <param name="pcode"></param>
+            <param name="multiple"></param>
+            <param name="EwalletID"></param>
+            <param name="Topupdate"></param>
+            <param name="flag"></param>
+            <param name="errMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsDataAccess.inserrttemppass(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String@,System.String@)">
+            <returns>INT</returns>
+        </member>
+        <member name="M:ClsDataAccess.UpdateCustRecords_UserName(System.String,System.String,System.Int32@,System.String@)">
+            <summary>
+            To Withdraw Money from Customer e_wallet_main
+            </summary>
+        </member>
+    </members>
+</doc>
